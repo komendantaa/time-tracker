@@ -1,36 +1,32 @@
 import { Component, OnInit} from '@angular/core';
-import {Item} from './item'
+// import Rx from 'rxjs/Rx';
+
+import { HttpService} from '../common/http.service';
+import {Item} from '../common/item'
 
 @Component({
     selector: 'my-app',
     templateUrl: './app.component.html',
-    styleUrls:['./app.component.css']
+    styleUrls:['./app.component.css'],
+    providers: [HttpService]
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
     timerId: any;
     item: Item;
     items: Item[]=[];
     projectNames: string[];
 
-    ngOnInit() {
-        
-        this.item = new Item('','timer');
+    constructor(private HttpService: HttpService){}
 
-        // this.items =
-        //     [
-        //         { taskName: "Working on creating time tracking application",
-        //             projectName: "timer", startDate: null, spentTime: 0, endDate: null, inProcess:false },
-        //         { taskName: "Setup the basic angularjs with task runners",
-        //             projectName: "timer", startDate: null, spentTime: 0, endDate: null, inProcess:false },
-        //         { taskName: "Configure the github repository",
-        //             projectName: "timer", startDate: null, spentTime: 0, endDate: null, inProcess:false }
-        //     ];
+    ngOnInit(){
+        this.item = new Item('','timer');
+        if(!window.localStorage.log){
+            this.HttpService.getItems().subscribe((data:Item[]) => this.items = data);
+        }
         this.projectNames = ["timer", "nothing", "third"];
         this.findItemInProcess();
-
     }
-
 
     startTracking():void {
         if(this.item.inProcess)return;
@@ -40,7 +36,6 @@ export class AppComponent implements OnInit{
         this.item.spentTime = 0;
         this.items.push(this.item);
         this.initTimer(spentTime);
-
     }
 
     initTimer(spentTime:number):void{
@@ -82,5 +77,4 @@ export class AppComponent implements OnInit{
             this.keepTracking();
         }
     }
-
 }
