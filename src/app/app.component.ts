@@ -1,8 +1,8 @@
-import { Component, OnInit} from '@angular/core';
-// import Rx from 'rxjs/Rx';
+import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
 
-import { HttpService} from '../common/http.service';
-import {Item} from '../common/item'
+import { HttpService } from '../common/http.service';
+import {Item } from '../common/item'
 
 @Component({
     selector: 'my-app',
@@ -16,13 +16,16 @@ export class AppComponent implements OnInit {
     item: Item;
     items: Item[]=[];
     projectNames: string[];
+    counter: string = "0 sec";
 
     constructor(private HttpService: HttpService){}
 
     ngOnInit(){
         this.item = new Item('','timer');
         if(!window.localStorage.log){
-            this.HttpService.getItems().subscribe((data:Item[]) => this.items = data);
+            this.HttpService.getItems().subscribe((data:Item[]) => {
+                this.items = data;
+            });
         }
         this.projectNames = ["timer", "nothing", "third"];
         this.findItemInProcess();
@@ -33,20 +36,22 @@ export class AppComponent implements OnInit {
         this.item.inProcess = true;
         this.item.startDate = new Date();
         let spentTime:number = 0;
-        this.item.spentTime = 0;
+        this.item.spentTimeCounter = 0;
         this.items.push(this.item);
         this.initTimer(spentTime);
     }
 
     initTimer(spentTime:number):void{
         this.timerId = setInterval(()=>{
-            this.item.spentTime = ++spentTime;
+            this.item.spentTimeCounter = ++spentTime;
+            this.item.spentTime = moment.duration(spentTime, "seconds").format("hh:mm:ss", {trim: false});
+            this.counter = moment.duration(spentTime, "seconds").format("H [h] m [min] s [sec]", {trim: "both"});
             window.localStorage.log = JSON.stringify(this.items);
         }, 1000);
     }
 
     keepTracking():void {
-        let spentTime:number = this.item.spentTime;
+        let spentTime:number = this.item.spentTimeCounter;
         this.initTimer(spentTime);
     }
 
@@ -68,10 +73,10 @@ export class AppComponent implements OnInit {
         let logStorage: Item[] = JSON.parse(window.localStorage.log||'[]');
         console.log(logStorage);
         logStorage.forEach((i:Item)=>{
-            this.items.push(i);
             if(i.inProcess){
                 this.item = i;
             }
+            this.items.push(i);
         });
         if(this.item.inProcess){
             this.keepTracking();

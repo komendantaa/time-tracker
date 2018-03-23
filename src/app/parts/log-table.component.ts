@@ -1,7 +1,9 @@
 /**
  * Created by komendant on 19.03.2018.
  */
-import { Input, Component } from '@angular/core';
+import { Input, Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
+var momentDurationFormatSetup = require("moment-duration-format");
 
 import {Item} from '../../common/item';
 
@@ -9,20 +11,15 @@ import {Item} from '../../common/item';
     selector: 'log',
     templateUrl: `./log-table.component.html`
 })
-export class LogComponent{
+export class LogComponent implements OnInit{
     @Input() item: Item;
     @Input() items: Item[];
-    @Input() public duplicateItem:Function;
+    @Input() public duplicateItem: Function;
 
     constructor(){}
 
-    public isToday(item:Item):boolean{
-        let temp = new Date();
-        let today = new Date(temp.getFullYear(), temp.getMonth(), temp.getDate());
-        temp = new Date(item.endDate);
-        let diff = temp.getTime() - today.getTime();
-        console.log(diff);
-        
-        return diff / 1000 / 60 / 60 < 24;
+    ngOnInit(){
+
     }
+
 }

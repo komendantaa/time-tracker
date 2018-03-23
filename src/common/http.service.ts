@@ -28,7 +28,7 @@ export class HttpService{
                      }
             });
         })
-        .catch((error: any)=> { return Observable.of([{
+        .catch((err: any)=> { return Observable.of([{
             "taskName": "Working on creating time tracking application",
             "projectName": "timer",
             "startDate": "2018-03-21T17:43:18.919Z",
