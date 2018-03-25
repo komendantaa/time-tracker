@@ -3,7 +3,7 @@
  */
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Item} from './item'
+import {Item} from '../base/item'
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/of';
@@ -29,10 +29,11 @@ export class HttpService{
             });
         })
         .catch((err: any)=> { return Observable.of([{
-            "taskName": "Working on creating time tracking application",
+            "taskName": "Default task",
             "projectName": "timer",
             "startDate": "2018-03-21T17:43:18.919Z",
-            "spentTime": 12,
+            "spentTime": "00:00:32",
+            "spentTimeCounter": 32,
             "endDate": "2018-03-21T17:43:31.563Z",
             "inProcess": false
             }])

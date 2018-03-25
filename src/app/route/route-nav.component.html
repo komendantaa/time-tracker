@@ -1,0 +1,9 @@
+<div>
+  <nav>
+    <a routerLink="" routerLinkActive="active"
+       [routerLinkActiveOptions]="{exact:true}">Description</a>
+    <a routerLink="/about" routerLinkActive="active">About us</a>
+    <a routerLink="random" [queryParams]="{'project':'random'}">"Not-found" example</a>
+  </nav>
+  <router-outlet></router-outlet>
+</div>

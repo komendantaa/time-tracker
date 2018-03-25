@@ -16,9 +16,7 @@
                 </option>
             </select>
         </div>
-        <div class="form-group">
-            <h3>{{counter}}</h3>
-        </div>
+        <counter [counter]="counter"></counter>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-8" [hidden]="item.inProcess">
                 <button [disabled]="!item.taskName||!item.projectName" class="btn btn-default" (click)="startTracking()">Start</button>
@@ -28,5 +26,6 @@
             </div>
         </div>
     </div>
-    <log [item]="item" [items]="items" [duplicateItem]="duplicateItem.bind(this)"></log>
 </div>
+<log [item]="item" [items]="items" [duplicateItem]="duplicateItem.bind(this)"></log>
+<route-nav></route-nav>

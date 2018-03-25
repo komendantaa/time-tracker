@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 
-import { HttpService } from '../common/http.service';
-import {Item } from '../common/item'
+import { HttpService } from '../common/services/http.service';
+import {Item } from '../common/base/item'
 
 @Component({
     selector: 'my-app',

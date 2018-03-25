@@ -2,14 +2,13 @@
  * Created by komendant on 19.03.2018.
  */
 import { Input, Component, OnInit } from '@angular/core';
-import * as moment from 'moment';
 var momentDurationFormatSetup = require("moment-duration-format");
 
-import {Item} from '../../common/item';
+import {Item} from '../../common/base/item';
 
 @Component({
     selector: 'log',
-    templateUrl: `./log-table.component.html`
+    templateUrl: `./log.component.html`
 })
 export class LogComponent implements OnInit{
     @Input() item: Item;
