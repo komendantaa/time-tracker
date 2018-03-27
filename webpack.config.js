@@ -3,8 +3,8 @@ var webpack = require('webpack');
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin'); // плагин минимизации
 module.exports = {
   entry: {
-    'polyfills': './src/polyfills.ts',
-    'app': './src/main.ts'
+    'polyfills': './app/polyfills.ts',
+    'app': './app/main.ts'
   },
   output:{
     path: path.resolve(__dirname, './public'),     // путь к каталогу выходных файлов - папка public

@@ -3,7 +3,7 @@
  */
 import { Component, Input } from '@angular/core';
 
-import {Item } from '../../common/base/item';
+import {Item } from '../../shared/base/item';
 
 @Component ({
     selector: 'projects',

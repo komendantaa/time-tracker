@@ -4,15 +4,16 @@ import { HttpClientModule }   from '@angular/common/http';
 import { FormsModule }   from '@angular/forms';
 import {Routes, RouterModule} from '@angular/router';
 
-import { AppComponent }   from './app/app.component';
-import { ProjectsComponent }   from './app/projects/projects.component';
-import { CounterComponent }   from './app/counter/counter.component';
-import { ControlBtnsComponent }   from './app/control-btns/control-btns.component';
-import { LogComponent }   from './app/log/log.component';
-import { RouteNavigationComponent }   from './app/route/route-nav.component';
-import { DescriptionComponent } from './app/route/description.component';
-import { AboutComponent } from './app/route/about.component';
-import { NotFoundComponent } from './app/route/not-found.component';
+import { AppComponent }   from './app.component';
+import { AppInterfaceComponent } from './components/app-interface.component';
+import { ProjectsComponent }   from './components/projects/projects.component';
+import { CounterComponent }   from './components/counter/counter.component';
+import { ControlBtnsComponent }   from './components/control-btns/control-btns.component';
+import { LogComponent }   from './components/log/log.component';
+import { RouteNavigationComponent }   from './components/route/route-nav.component';
+import { DescriptionComponent } from './components/route/description.component';
+import { AboutComponent } from './components/route/about.component';
+import { NotFoundComponent } from './components/route/not-found.component';
 
 const appRoutes: Routes =[
     { path: '', component: DescriptionComponent},
@@ -29,6 +30,7 @@ const appRoutes: Routes =[
     ],
     declarations: [
         AppComponent,
+        AppInterfaceComponent,
         ProjectsComponent,
         CounterComponent,
         ControlBtnsComponent,

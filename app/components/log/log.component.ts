@@ -4,7 +4,7 @@
 import { Input, Component } from '@angular/core';
 var momentDurationFormatSetup = require("moment-duration-format");
 
-import {Item} from '../../common/base/item';
+import {Item} from '../../shared/base/item';
 
 @Component({
     selector: 'log',

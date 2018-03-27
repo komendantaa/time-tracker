@@ -1,16 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import * as moment from 'moment';
 
-import { PreTasksService } from '../common/services/pre-tasks.service';
-import {Item } from '../common/base/item';
+import { PreTasksService } from '../shared/services/pre-tasks.service';
+import {Item } from '../shared/base/item';
 
 @Component({
-    selector: 'my-app',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css'],
+    selector: 'app-interface',
+    templateUrl: './app-interface.component.html',
     providers: [PreTasksService]
 })
-export class AppComponent implements OnInit {
+export class AppInterfaceComponent implements OnInit {
 
     timerId: any;
     item: Item;

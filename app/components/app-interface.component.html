@@ -1,0 +1,16 @@
+<div class="panel">
+  <div class="form-inline">
+    <div class="form-group">
+      <div class="col-md-8">
+        <input [disabled]="item.inProcess" type="text" class="form-control" [(ngModel)]="item.taskName"
+               placeholder = "What are you working on"/>
+      </div>
+    </div>
+    <projects [item]="item"></projects>
+    <counter [counter]="counter"></counter>
+    <control-btns [item]="item" [startTracking]="startTracking.bind(this)"
+                  [stopTracking]="stopTracking.bind(this)"></control-btns>
+
+  </div>
+</div>
+<log [item]="item" [items]="items" [duplicateItem]="duplicateItem.bind(this)"></log>
