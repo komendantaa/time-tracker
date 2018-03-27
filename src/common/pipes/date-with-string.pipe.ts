@@ -7,11 +7,11 @@ import { Pipe, PipeTransform } from '@angular/core';
     name: 'dateWithString'
 })
 export class DateWithStringPipe implements PipeTransform {
+    
     transform(value: number, args?: any): string {
-
-        let hour:string = '00';
-        let min:string = '00';
-        let sec:string = '00';
+        let hour:string;
+        let min:string;
+        let sec:string;
         
         if(value<10){
             return value + ' sec'

@@ -7,13 +7,11 @@ import { Pipe, PipeTransform } from '@angular/core';
     name: 'dateFormat'
 })
 export class DateFormatPipe implements PipeTransform {
+    
     transform(value: number, args?: any): string {
-
         let hour:string = '00';
         let min:string = '00';
         let sec:string = '00';
-
-        // value = (value/1000).toFixed(0);
 
         if(value<10){
             return '00:00:0' + value

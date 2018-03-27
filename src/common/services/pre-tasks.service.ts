@@ -3,21 +3,21 @@
  */
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Item} from '../base/item'
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 
+import {Item} from '../base/item'
+
 @Injectable()
-export class HttpService{
+export class PreTasksService{
 
     constructor(private http: HttpClient){ }
 
     getItems() : Observable<Item[]> {
-        return this.http.get('pre-projects.json').map(data=>{
-            let usersList = data["predefinedList"];
-            return usersList.map(function(item:any) {
+        return this.http.get('pre-tasks.json').map(data=>{
+            return data["predefinedList"].map(function(item:any) {
                 return {
                     taskName: item.taskName,
                     projectName: item.projectName,

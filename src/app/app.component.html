@@ -1,31 +1,22 @@
-<div class="page-header">
-    <h1> Time tracker </h1>
-</div>
-<div class="panel">
-    <div class="form-inline">
-        <div class="form-group">
-            <div class="col-md-8">
-                <input [disabled]="item.inProcess" type="text" class="form-control" [(ngModel)]="item.taskName"
-                       placeholder = "What are you working on"/>
+<div class="app-wrapper">
+    <div class="page-header">
+        <h1> Time tracker </h1>
+    </div>
+    <div class="panel">
+        <div class="form-inline">
+            <div class="form-group">
+                <div class="col-md-8">
+                    <input [disabled]="item.inProcess" type="text" class="form-control" [(ngModel)]="item.taskName"
+                           placeholder = "What are you working on"/>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <select [disabled]="item.inProcess" class="form-control" name="projectName" [(ngModel)]="item.projectName">
-                <option  *ngFor="let project of projectNames" [value]="project">
-                    {{project}}
-                </option>
-            </select>
-        </div>
-        <counter [counter]="counter"></counter>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-8" [hidden]="item.inProcess">
-                <button [disabled]="!item.taskName||!item.projectName" class="btn btn-default" (click)="startTracking()">Start</button>
-            </div>
-            <div class="col-md-offset-2 col-md-8" [hidden]="!item.inProcess">
-                <button class="btn btn-default" (click)="stopTracking()">Stop</button>
-            </div>
+            <projects [item]="item"></projects>
+            <counter [counter]="counter"></counter>
+            <control-btns [item]="item" [startTracking]="startTracking.bind(this)"
+                          [stopTracking]="stopTracking.bind(this)"></control-btns>
+
         </div>
     </div>
+    <log [item]="item" [items]="items" [duplicateItem]="duplicateItem.bind(this)"></log>
+    <route-nav></route-nav>
 </div>
-<log [item]="item" [items]="items" [duplicateItem]="duplicateItem.bind(this)"></log>
-<route-nav></route-nav>

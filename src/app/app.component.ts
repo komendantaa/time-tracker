@@ -1,37 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import * as moment from 'moment';
 
-import { HttpService } from '../common/services/http.service';
-import {Item } from '../common/base/item'
+import { PreTasksService } from '../common/services/pre-tasks.service';
+import {Item } from '../common/base/item';
 
 @Component({
     selector: 'my-app',
     templateUrl: './app.component.html',
-    styleUrls:['./app.component.css'],
-    providers: [HttpService]
+    styleUrls: ['./app.component.css'],
+    providers: [PreTasksService]
 })
 export class AppComponent implements OnInit {
 
     timerId: any;
     item: Item;
-    items: Item[]=[];
-    projectNames: string[];
+    items: Item[] = [];
     counter: string = "0 sec";
+    private PreTasksServiceSub: any;
 
-    constructor(private HttpService: HttpService){}
+    constructor(private PreTasksService: PreTasksService){}
 
     ngOnInit(){
         this.item = new Item('','timer');
         if(!window.localStorage.log){
-            this.HttpService.getItems().subscribe((data:Item[]) => {
+            this.PreTasksServiceSub = this.PreTasksService.getItems().subscribe((data:Item[]) => {
                 this.items = data;
             });
         }
-        this.projectNames = ["timer", "nothing", "third"];
         this.findItemInProcess();
     }
 
-    startTracking():void {
+    ngOnDestroy() {
+        this.PreTasksServiceSub.unsubscribe();
+    }
+
+    public startTracking():void {
         if(this.item.inProcess)return;
         this.item.inProcess = true;
         this.item.startDate = new Date();
@@ -69,9 +72,8 @@ export class AppComponent implements OnInit {
         this.item = new Item('','timer');
     }
 
-    findItemInProcess():any{
+    findItemInProcess():void{
         let logStorage: Item[] = JSON.parse(window.localStorage.log||'[]');
-        console.log(logStorage);
         logStorage.forEach((i:Item)=>{
             if(i.inProcess){
                 this.item = i;

@@ -1,0 +1,7 @@
+<div class="form-group">
+  <select [disabled]="item.inProcess" class="form-control" name="projectName" [(ngModel)]="item.projectName">
+    <option  *ngFor="let project of projectNames" [value]="project">
+      {{project}}
+    </option>
+  </select>
+</div>

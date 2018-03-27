@@ -1,0 +1,12 @@
+<div class="form-group">
+  <div class="col-md-offset-2 col-md-8" [hidden]="item.inProcess">
+    <button [disabled]="!item.taskName||!item.projectName" class="btn btn-default" (click)="startTracking()">
+      Start
+    </button>
+  </div>
+  <div class="col-md-offset-2 col-md-8" [hidden]="!item.inProcess">
+    <button class="btn btn-default" (click)="stopTracking()">
+      Stop
+    </button>
+  </div>
+</div>

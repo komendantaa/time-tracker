@@ -5,7 +5,9 @@ import { FormsModule }   from '@angular/forms';
 import {Routes, RouterModule} from '@angular/router';
 
 import { AppComponent }   from './app/app.component';
+import { ProjectsComponent }   from './app/projects/projects.component';
 import { CounterComponent }   from './app/counter/counter.component';
+import { ControlBtnsComponent }   from './app/control-btns/control-btns.component';
 import { LogComponent }   from './app/log/log.component';
 import { RouteNavigationComponent }   from './app/route/route-nav.component';
 import { DescriptionComponent } from './app/route/description.component';
@@ -27,7 +29,9 @@ const appRoutes: Routes =[
     ],
     declarations: [
         AppComponent,
+        ProjectsComponent,
         CounterComponent,
+        ControlBtnsComponent,
         LogComponent,
         RouteNavigationComponent,
         DescriptionComponent,

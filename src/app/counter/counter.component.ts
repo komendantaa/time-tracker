@@ -1,7 +1,7 @@
 /**
  * Created by komendant on 25.03.2018.
  */
-import { Component, Input} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component ({
     selector: 'counter',
