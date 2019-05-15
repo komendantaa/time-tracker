@@ -7,7 +7,7 @@ import { CoreModule } from './modules/core/core.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
