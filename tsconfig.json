@@ -1,19 +1,27 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
-    "target": "es5",
+    "baseUrl": ".",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
     "module": "es2015",
     "moduleResolution": "node",
-    "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "lib": [ "es2015", "dom" ],
-    "noImplicitAny": true,
-    "suppressImplicitAnyIndexErrors": true,
+    "importHelpers": true,
+    "target": "es5",
     "typeRoots": [
-      "node_modules/@types/"
-    ]
-  },
-  "exclude": [
-    "node_modules"
-  ]
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+		"paths": {
+			"@tracker/*": ["src/app/*"],
+			"@shared/*": ["src/app/shared/*"],
+			"@services/*": ["src/app/shared/services/*"]
+		}
+  }
 }
