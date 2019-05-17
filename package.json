@@ -1,7 +1,7 @@
 {
   "name": "time-tracker",
   "version": "0.0.0",
-	"author": "Komendant Alex",
+  "author": "Komendant Alex",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -20,7 +20,10 @@
     "@angular/platform-browser": "~7.2.0",
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
+    "@auth0/angular-jwt": "^2.1.0",
     "core-js": "^2.5.4",
+    "moment": "^2.24.0",
+    "ngx-take-until-destroy": "^5.4.0",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"

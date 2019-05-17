@@ -1,0 +1,26 @@
+[
+    {
+      "taskName": "Working on creating time tracking application",
+      "projectName": "timer",
+      "startDate": "2018-03-21T17:43:18.919Z",
+      "spentTime": 23,
+      "endDate": "2018-03-21T17:43:31.563Z",
+      "inProcess": false
+    },
+    {
+      "taskName": "Setup the basic angular with task runners",
+      "projectName": "timer",
+      "startDate": "2018-03-20T12:21:18.919Z",
+      "spentTime": 23,
+      "endDate": "2018-03-21T19:22:18.919Z",
+      "inProcess": false
+    },
+    {
+      "taskName": "Configure the github repository",
+      "projectName": "timer",
+      "startDate": "2018-03-18T17:43:18.919Z",
+      "spentTime": 23,
+      "endDate": "2018-03-21T17:43:31.563Z",
+      "inProcess": false
+    }
+]
