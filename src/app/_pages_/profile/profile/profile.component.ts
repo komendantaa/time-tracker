@@ -7,6 +7,7 @@ import { AuthService } from '@tracker/services/auth/auth.service';
 import { UserService } from '@tracker/services/user/user.service';
 import { FormsService } from '@tracker/services/forms/forms.service';
 import { IUserInfo } from '@tracker/interfaces';
+import { AppConfig } from '@tracker/app.config';
 
 @Component({
   selector: 'app-profile',
@@ -14,6 +15,8 @@ import { IUserInfo } from '@tracker/interfaces';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit, OnDestroy {
+  appConfig = AppConfig;
+
   profileForm: FormGroup;
   profile: IUserInfo = this.userSvc.resetUser();
 

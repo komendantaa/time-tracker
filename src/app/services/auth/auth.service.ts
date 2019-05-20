@@ -30,7 +30,7 @@ export class AuthService {
             (data: ILoginResp) => {
               this.authStatus$.next(true);
               this.jwtSvc.setToken(data.token);
-              // this.fetchProfiles();
+              this.fetchProfiles();
             },
             (err) => {
               // because of no api...
@@ -39,9 +39,11 @@ export class AuthService {
                   'eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.' +
                   'SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
               this.jwtSvc.setToken(dumbJwt);
-              const dumbUser = {avatar: '', username: params.username};
+              const dumbUser = {
+                avatar: '',
+                username: params.username
+              };
               this.userSvc.fetchUserInfo(dumbUser);
-              // this.fetchProfiles();
             }
         ));
   }
@@ -64,25 +66,16 @@ export class AuthService {
   }
 
   private checkAndLogoutIfNeed() {
-    if (this.isRegisteredUser()) {
-      if (this.isAuthenticated()) {
-        this.authStatus$.next(true);
-        // this.fetchProfiles();
-      } else {
-        this.logout();
-      }
+    if (this.isAuthenticated()) {
+      this.authStatus$.next(true);
+      // this.fetchProfiles();
     } else {
-      this.router.navigate(['/auth']);
+      this.logout();
     }
   }
 
-  // USER STATUS
   isAuthenticated(): boolean {
-    // return !this.jwtSvc.isExpired();
-    return true;
-  }
-
-  isRegisteredUser(): boolean {
-    return !!(this.userSvc.getStoredIdentity() || this.jwtSvc.getToken());
+    // return this.jwtSvc.getToken() && this.jwtSvc.isExpired();
+    return !!this.jwtSvc.getToken();
   }
 }

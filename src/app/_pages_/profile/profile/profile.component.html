@@ -1,8 +1,8 @@
 <form class="form form-signin" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
   <hr>
   <div class="text-center mb-4">
-    <img class="mb-4" src="favicon.ico" alt="" width="72" height="72">
-    <h1 class="h3 mb-3 font-weight-normal">Time Tracker</h1>
+    <img class="mb-4 avatar" [src]="profile.avatar || appConfig.defaultAvatar" alt="" width="150" height="150">
+    <h1 class="h3 mb-3 font-weight-normal">{{ profile.username }}</h1>
   </div>
 
   <hr>

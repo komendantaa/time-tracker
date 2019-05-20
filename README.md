@@ -1,6 +1,12 @@
-# TimeTracker
+# Time-Tracker
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.6.
+This project was created in order to show programming skills of JavaScript developers from Jelvix.
+
+[Angular CLI](https://github.com/angular/angular-cli) version 7.3.6.
+
+![login page](https://i.imgur.com/72i64Cg.png)
+
+![tracker page](https://i.imgur.com/rqAum37.png)
 
 ## Development server
 
@@ -25,3 +31,6 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+Note: FOR CODE DEMONSTRATION ONLY.

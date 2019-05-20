@@ -13,6 +13,6 @@ export class AuthGuard implements CanActivateChild {
   ) {}
 
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    return this.authSvc.isRegisteredUser() && this.authSvc.isAuthenticated();
+    return this.authSvc.isAuthenticated();
   }
 }
