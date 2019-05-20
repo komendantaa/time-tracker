@@ -1,8 +1,11 @@
-export interface IUser {
+export interface IUserRequest {
   avatar: string,
-  company_name: string,
-  email: string,
-  first_name: string,
-  last_name: string,
-  phone: string,
+  username: string,
+  oldPassword: string,
+  newPassword: string,
+}
+
+export interface IUserInfo {
+  avatar: string,
+  username: string,
 }

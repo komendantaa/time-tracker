@@ -11,5 +11,4 @@ export class UserContentComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

@@ -3,77 +3,69 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import { ApiService } from '@tracker/services/api/api.service';
 import { StorageService } from '@tracker/services/storage/storage.service';
-import { IUser } from '@tracker/interfaces';
+import { IUserInfo, IUserRequest } from '@tracker/interfaces';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private _userInfo: IUser = this.getLocalData();
-  userInfo$ = new BehaviorSubject<IUser>(this._userInfo);
+  private _userInfo: IUserInfo = this.getLocalData();
+  userInfo$ = new BehaviorSubject<IUserInfo>(this._userInfo);
 
   constructor(private apiSvc: ApiService, private storage: StorageService) {}
 
-  fetchUserInfo(newData?: IUser) {
+  fetchUserInfo(newData?: IUserInfo) {
     if (newData) {
       this.userInfo$.next(newData);
       this.saveDataLocally(newData);
     } else {
-      this.apiSvc.get('/users/profile').subscribe((res: IUser) => {
+      this.getUserInfo().subscribe((res: IUserInfo) => {
         this.userInfo$.next(res);
         this.saveDataLocally(res);
       });
     }
   }
 
-  private saveDataLocally(data: IUser) {
-    this.storage.setItem('impl_user', data);
+  private saveDataLocally(data: IUserInfo) {
+    this.storage.setItem('user', data);
   }
 
-  private getLocalData(): IUser {
-    return this.storage.getItemParsed('impl_user') || this.resetUser();
+  private getLocalData(): IUserInfo {
+    return this.storage.getItemParsed('user') || this.resetUser();
   }
 
-  getIdentity(params = {}): Observable<any> {
-    return this.apiSvc.get('/users/profile', params);
+  private getUserInfo(): Observable<IUserInfo> {
+    return this.apiSvc.get('/users/profile');
   }
 
-  changePassword(params: IUser): Observable<any> {
-    return this.apiSvc.put('/users/password', params || {});
-  }
-
-  changeUserInfo(params = {}): Observable<any> {
-    return this.apiSvc.put('/users', params);
-  }
-
-  changeEmail(params = {}): Observable<any> {
-    return this.apiSvc.put('/users/email', params);
-  }
-
-  changePhoto(params = {}): Observable<any> {
-    return this.apiSvc.post('/users/avatar', params);
-  }
-
-  saveUser(data: IUser) {
-    this.storage.setItem('impl_user', data);
+  updUserInfo(params: IUserRequest) {
+    return this.apiSvc.post('/users/profile', params)
+        .pipe(tap(
+            () => {},
+            () => {
+              // because of no api
+              const dumbUser = {
+                avatar: params.avatar,
+                username: params.username
+              };
+              this.fetchUserInfo(dumbUser);
+            },
+        ));
   }
 
   eraseUser() {
-    this.storage.removeItem('impl_user');
+    this.storage.removeItem('user');
   }
 
-  getStoredIdentity(): IUser {
-    return this.storage.getItemParsed('impl_user');
+  getStoredIdentity(): IUserInfo {
+    return this.storage.getItemParsed('user');
   }
 
-  resetUser(): IUser {
+  resetUser(): IUserInfo {
     return {
       avatar: '',
-      company_name: '',
-      email: '',
-      first_name: '',
-      last_name: '',
-      phone: '',
+      username: '',
     };
   }
 }

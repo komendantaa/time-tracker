@@ -1,0 +1,27 @@
+<form class="form form-signin" [formGroup]="signForm" (ngSubmit)="onSubmit()">
+  <div class="text-center mb-4">
+    <img class="mb-4" src="favicon.ico" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Time Tracker</h1>
+    <p>Please, sign in</p>
+  </div>
+
+  <div class="form-label-group">
+    <input type="email" id="inputEmail"
+           placeholder="Username" required="" autofocus=""
+           class="form-control"
+           formControlName="username">
+    <label for="inputEmail">Username</label>
+  </div>
+
+  <div class="form-label-group">
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="" formControlName="password">
+    <label for="inputPassword">Password</label>
+  </div>
+
+  <div class="checkbox mb-3">
+    <label>
+      <input type="checkbox" value="remember-me" formControlName="remember"> Remember me
+    </label>
+  </div>
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+</form>

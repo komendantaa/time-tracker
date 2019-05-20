@@ -1,3 +1,30 @@
-<p>
-  profile works!
-</p>
+<form class="form form-signin" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <hr>
+  <div class="text-center mb-4">
+    <img class="mb-4" src="favicon.ico" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Time Tracker</h1>
+  </div>
+
+  <hr>
+
+  <div class="form-label-group">
+    <input type="email" id="inputEmail"
+           placeholder="Username" required="" autofocus=""
+           class="form-control"
+           formControlName="username">
+    <label for="inputEmail">Username</label>
+  </div>
+
+  <div class="form-label-group">
+    <input type="password" id="oldPassword" class="form-control" placeholder="Old Password" required="" formControlName="oldPassword">
+    <label for="oldPassword">Old Password</label>
+  </div>
+
+  <div class="form-label-group">
+    <input type="password" id="newPassword" class="form-control" placeholder="New Password" required="" formControlName="newPassword">
+    <label for="newPassword">New Password</label>
+  </div>
+
+  <hr>
+  <button class="btn btn-lg btn-primary" type="submit">Save</button>
+</form>
